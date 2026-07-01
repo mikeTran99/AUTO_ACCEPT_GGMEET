@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mike-AutoMeet</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body data-theme="sapphire" data-mode="allow">
+    <main class="shell" aria-live="polite">
+      <header class="hero">
+        <div class="hero-mark">
+          <img id="modeLogo" src="../assets/allow.jpg" alt="Mike-AutoMeet allow mode">
+        </div>
+        <div class="hero-copy">
+          <p data-i18n="eyebrow">GOOGLE MEET CONTROL</p>
+          <h1 data-i18n="title">Mike-AutoMeet</h1>
+        </div>
+        <span id="statusBadge" class="badge">...</span>
+      </header>
+
+      <section class="control-panel primary-panel">
+        <label class="switch-row">
+          <span>
+            <strong data-i18n="enableTitle">Tự động xử lý</strong>
+            <small data-i18n="enableHint">Chạy khi bạn là giảng viên, host hoặc co-host.</small>
+          </span>
+          <input id="enabled" type="checkbox" role="switch">
+        </label>
+
+        <div class="field-group">
+          <span class="field-label" data-i18n="actionMode">Chế độ tự động</span>
+          <div class="mode-tabs" role="radiogroup" aria-label="Automation mode">
+            <label>
+              <input id="actionAllow" type="radio" name="actionMode" value="allow">
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <b data-i18n="allowMode">Cho phép</b>
+              </span>
+            </label>
+            <label>
+              <input id="actionDeny" type="radio" name="actionMode" value="deny">
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18 6 6 18M6 6l12 12"></path>
+                </svg>
+                <b data-i18n="denyMode">Từ chối</b>
+              </span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-panel">
+        <div class="field-grid">
+          <label class="field">
+            <span data-i18n="uiLanguage">Ngôn ngữ giao diện</span>
+            <select id="uiLanguage">
+              <option value="vi">Tiếng Việt</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span data-i18n="matchLanguage">Ngôn ngữ nút Meet</span>
+            <select id="matchLanguage">
+              <option value="auto" data-i18n="autoLanguage">Tự động</option>
+              <option value="vi">Tiếng Việt</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="field-group theme-group">
+          <span class="field-label" data-i18n="themeColor">Màu giao diện</span>
+          <div class="swatches" role="radiogroup" aria-label="Theme color">
+            <label class="swatch emerald" title="Emerald Glass">
+              <input type="radio" name="themeColor" value="emerald">
+              <span></span>
+            </label>
+            <label class="swatch sapphire" title="Sapphire Flow">
+              <input type="radio" name="themeColor" value="sapphire">
+              <span></span>
+            </label>
+            <label class="swatch cobalt" title="Cobalt AI">
+              <input type="radio" name="themeColor" value="cobalt">
+              <span></span>
+            </label>
+            <label class="swatch aurora" title="Emerald Prestige">
+              <input type="radio" name="themeColor" value="aurora">
+              <span></span>
+            </label>
+            <label class="swatch violet" title="Violet Neo">
+              <input type="radio" name="themeColor" value="violet">
+              <span></span>
+            </label>
+            <label class="swatch orchid" title="Orchid Haze">
+              <input type="radio" name="themeColor" value="orchid">
+              <span></span>
+            </label>
+            <label class="swatch gold" title="Champagne Gold">
+              <input type="radio" name="themeColor" value="gold">
+              <span></span>
+            </label>
+            <label class="swatch coral" title="Coral Pulse">
+              <input type="radio" name="themeColor" value="coral">
+              <span></span>
+            </label>
+            <label class="swatch rose" title="Rose Quartz">
+              <input type="radio" name="themeColor" value="rose">
+              <span></span>
+            </label>
+            <label class="swatch graphite" title="Arctic Nova">
+              <input type="radio" name="themeColor" value="graphite">
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-panel">
+        <label class="switch-row">
+          <span>
+            <strong data-i18n="strictTitle">Chế độ an toàn</strong>
+            <small data-i18n="strictHint">Chỉ bấm khi phát hiện yêu cầu vào phòng Meet.</small>
+          </span>
+          <input id="requireRequestContext" type="checkbox" role="switch">
+        </label>
+
+        <label class="switch-row divider">
+          <span>
+            <strong data-i18n="fastTitle">Phản hồi nhanh</strong>
+            <small data-i18n="fastHint">Giảm độ trễ quét và click để cho phép nhanh hơn.</small>
+          </span>
+          <input id="fastResponse" type="checkbox" role="switch">
+        </label>
+
+        <label class="switch-row divider">
+          <span>
+            <strong data-i18n="batchTitle">Cho phép xử lý hàng loạt</strong>
+            <small data-i18n="batchHint">Áp dụng cho Chấp nhận tất cả hoặc Từ chối tất cả nếu Meet hiển thị.</small>
+          </span>
+          <input id="allowBatchAction" type="checkbox" role="switch">
+        </label>
+      </section>
+
+      <p id="pageStatus" class="page-status">...</p>
+
+      <footer class="actions">
+        <a href="https://meet.google.com/" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 7h10v10H7z"></path>
+            <path d="m17 10 4-3v10l-4-3"></path>
+          </svg>
+          <span data-i18n="openMeet">Mở Meet</span>
+        </a>
+      </footer>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
