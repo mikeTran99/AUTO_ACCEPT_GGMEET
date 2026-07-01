@@ -6,6 +6,7 @@ Chrome/Edge Manifest V3 extension for hosts, co-hosts, lecturers, and meeting or
 
 - `Allow`: automatically admits waiting participants.
 - `Deny`: automatically rejects waiting participants.
+- Popup UI includes a clear `VI / EN` language toggle for Vietnamese and international users.
 - Supports Vietnamese and English Google Meet labels.
 - Runs only on `https://meet.google.com/*`.
 - Keeps settings in browser storage and does not send data to an external server.
@@ -30,10 +31,11 @@ No build step is required for normal use.
 ## Recommended settings
 
 1. Enable **Auto handling**.
-2. Choose **Allow** or **Deny**.
-3. Keep **Safety mode** ON for normal meetings.
-4. Keep **Fast response** ON for lower latency.
-5. Enable **Allow batch actions** only when you intentionally want `Admit all` or `Deny all` behavior.
+2. Use the **VI / EN** toggle if you want to switch the popup language.
+3. Choose **Allow** or **Deny**.
+4. Keep **Safety mode** ON for normal meetings.
+5. Keep **Fast response** ON for lower latency.
+6. Enable **Allow batch actions** only when you intentionally want `Admit all` or `Deny all` behavior.
 
 ## Verify for developers
 

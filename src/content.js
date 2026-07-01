@@ -7,7 +7,7 @@
 
   window.__mikeAutoMeetLoaded = true;
 
-  const RUNTIME_VERSION = "1.5.1";
+  const RUNTIME_VERSION = "1.5.2";
   const STATS_MODE = "disabled";
 
   const DEFAULT_SETTINGS = {

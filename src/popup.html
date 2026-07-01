@@ -55,13 +55,23 @@
 
       <section class="control-panel">
         <div class="field-grid">
-          <label class="field">
-            <span data-i18n="uiLanguage">Ngôn ngữ giao diện</span>
-            <select id="uiLanguage">
-              <option value="vi">Tiếng Việt</option>
-              <option value="en">English</option>
-            </select>
-          </label>
+          <div class="field">
+            <span id="uiLanguageLabel" data-i18n="uiLanguage">Ngôn ngữ giao diện</span>
+            <div class="language-toggle" role="radiogroup" aria-labelledby="uiLanguageLabel" data-i18n-aria-label="uiLanguage">
+              <label title="Tiếng Việt" data-i18n-title="languageVi">
+                <input id="uiLanguageVi" type="radio" name="uiLanguage" value="vi" aria-label="Tiếng Việt" data-i18n-aria-label="languageVi">
+                <span>
+                  <b>VI</b>
+                </span>
+              </label>
+              <label title="English" data-i18n-title="languageEn">
+                <input id="uiLanguageEn" type="radio" name="uiLanguage" value="en" aria-label="English" data-i18n-aria-label="languageEn">
+                <span>
+                  <b>EN</b>
+                </span>
+              </label>
+            </div>
+          </div>
 
           <label class="field">
             <span data-i18n="matchLanguage">Ngôn ngữ nút Meet</span>

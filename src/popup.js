@@ -2,7 +2,7 @@
 
 const DEFAULT_SETTINGS = {
   enabled: true,
-  uiLanguage: "vi",
+  uiLanguage: detectDefaultUiLanguage(),
   actionMode: "allow",
   matchLanguage: "auto",
   requireRequestContext: true,
@@ -15,7 +15,7 @@ const DEFAULT_SETTINGS = {
   debug: false
 };
 
-const EXPECTED_RUNTIME_VERSION = "1.5.1";
+const EXPECTED_RUNTIME_VERSION = "1.5.2";
 const EXPECTED_STATS_MODE = "disabled";
 
 const I18N = {
@@ -28,6 +28,8 @@ const I18N = {
     allowMode: "Cho phép",
     denyMode: "Từ chối",
     uiLanguage: "Ngôn ngữ giao diện",
+    languageVi: "Tiếng Việt",
+    languageEn: "English",
     matchLanguage: "Ngôn ngữ nút Meet",
     autoLanguage: "Tự động",
     themeColor: "Màu giao diện",
@@ -61,6 +63,8 @@ const I18N = {
     allowMode: "Allow",
     denyMode: "Deny",
     uiLanguage: "Popup language",
+    languageVi: "Vietnamese",
+    languageEn: "English",
     matchLanguage: "Meet button language",
     autoLanguage: "Auto",
     themeColor: "Interface color",
@@ -91,7 +95,7 @@ const elements = {
   enabled: document.querySelector("#enabled"),
   actionMode: Array.from(document.querySelectorAll("input[name='actionMode']")),
   themeColor: Array.from(document.querySelectorAll("input[name='themeColor']")),
-  uiLanguage: document.querySelector("#uiLanguage"),
+  uiLanguage: Array.from(document.querySelectorAll("input[name='uiLanguage']")),
   matchLanguage: document.querySelector("#matchLanguage"),
   requireRequestContext: document.querySelector("#requireRequestContext"),
   fastResponse: document.querySelector("#fastResponse"),
@@ -120,11 +124,11 @@ function init() {
 function bindEvents() {
   [
     elements.enabled,
-    elements.uiLanguage,
     elements.matchLanguage,
     elements.requireRequestContext,
     elements.fastResponse,
     elements.allowBatchAction,
+    ...elements.uiLanguage,
     ...elements.actionMode,
     ...elements.themeColor
   ].forEach((element) => {
@@ -156,11 +160,11 @@ function handleFormChange(event) {
 
 function applySettingsToForm() {
   elements.enabled.checked = Boolean(settings.enabled);
-  elements.uiLanguage.value = settings.uiLanguage;
   elements.matchLanguage.value = settings.matchLanguage;
   elements.requireRequestContext.checked = Boolean(settings.requireRequestContext);
   elements.fastResponse.checked = Boolean(settings.fastResponse);
   elements.allowBatchAction.checked = Boolean(settings.allowBatchAction);
+  setRadioValue(elements.uiLanguage, settings.uiLanguage);
   setRadioValue(elements.actionMode, settings.actionMode);
   setRadioValue(elements.themeColor, settings.themeColor);
 }
@@ -171,7 +175,7 @@ function readSettingsFromForm() {
     enabled: elements.enabled.checked,
     actionMode: getRadioValue(elements.actionMode, DEFAULT_SETTINGS.actionMode),
     themeColor: getRadioValue(elements.themeColor, DEFAULT_SETTINGS.themeColor),
-    uiLanguage: elements.uiLanguage.value,
+    uiLanguage: getRadioValue(elements.uiLanguage, DEFAULT_SETTINGS.uiLanguage),
     matchLanguage: elements.matchLanguage.value,
     requireRequestContext: elements.requireRequestContext.checked,
     fastResponse: elements.fastResponse.checked,
@@ -324,6 +328,14 @@ function translate() {
     const key = element.getAttribute("data-i18n");
     element.textContent = t(key);
   });
+  document.querySelectorAll("[data-i18n-title]").forEach((element) => {
+    const key = element.getAttribute("data-i18n-title");
+    element.title = t(key);
+  });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+    const key = element.getAttribute("data-i18n-aria-label");
+    element.setAttribute("aria-label", t(key));
+  });
 }
 
 function applyVisualState() {
@@ -378,6 +390,18 @@ function sanitizeSettings(value) {
     fastResponse: Boolean(value.fastResponse ?? DEFAULT_SETTINGS.fastResponse),
     allowBatchAction
   };
+}
+
+function detectDefaultUiLanguage() {
+  const locale = (
+    typeof chrome !== "undefined" &&
+    chrome.i18n &&
+    typeof chrome.i18n.getUILanguage === "function"
+  )
+    ? chrome.i18n.getUILanguage()
+    : (typeof navigator !== "undefined" ? navigator.language : "");
+
+  return String(locale || "").toLowerCase().startsWith("vi") ? "vi" : "en";
 }
 
 function updateModeLogo() {

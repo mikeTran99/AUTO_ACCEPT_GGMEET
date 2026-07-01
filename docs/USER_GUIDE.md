@@ -1,7 +1,7 @@
 # Hướng dẫn sử dụng Auto Accept GGMeet
 
 Tên extension: **Mike-AutoMeet**  
-Phiên bản: **1.5.1**  
+Phiên bản: **1.5.2**  
 Cập nhật tài liệu: **2026-07-01**  
 Link GitHub: **https://github.com/mikeTran99/AUTO_ACCEPT_GGMEET**
 
@@ -75,13 +75,14 @@ Sau khi cài xong:
 1. Mở một phòng Google Meet tại `https://meet.google.com/`.
 2. Refresh tab Google Meet nếu tab đã mở trước khi cài extension.
 3. Bấm biểu tượng **Mike-AutoMeet** trên thanh công cụ.
-4. Bật **Tự động xử lý / Auto handling**.
-5. Chọn **Chế độ tự động / Automation mode**:
+4. Chọn nút **VI** hoặc **EN** ở mục **Ngôn ngữ giao diện / Popup language** nếu muốn đổi ngôn ngữ popup.
+5. Bật **Tự động xử lý / Auto handling**.
+6. Chọn **Chế độ tự động / Automation mode**:
    - **Cho phép / Allow** nếu muốn tự động duyệt người đang chờ.
    - **Từ chối / Deny** nếu muốn tự động từ chối người đang chờ.
-6. Để **Chế độ an toàn / Safety mode** bật trong lần dùng đầu tiên.
-7. Để **Phản hồi nhanh / Fast response** bật nếu muốn extension quét và phản hồi nhanh hơn.
-8. Chỉ bật **Cho phép xử lý hàng loạt / Allow batch actions** khi bạn thật sự muốn dùng nút kiểu **Admit all / Deny all** nếu Google Meet hiển thị.
+7. Để **Chế độ an toàn / Safety mode** bật trong lần dùng đầu tiên.
+8. Để **Phản hồi nhanh / Fast response** bật nếu muốn extension quét và phản hồi nhanh hơn.
+9. Chỉ bật **Cho phép xử lý hàng loạt / Allow batch actions** khi bạn thật sự muốn dùng nút kiểu **Admit all / Deny all** nếu Google Meet hiển thị.
 
 ## 7. Ý nghĩa từng tùy chọn trong popup
 
@@ -98,7 +99,7 @@ Khi đổi chế độ, extension tự đồng bộ cấu hình và làm mới t
 
 ### Ngôn ngữ giao diện / Popup language
 
-Chọn ngôn ngữ hiển thị trong popup: Tiếng Việt hoặc English.
+Chọn ngôn ngữ hiển thị trong popup bằng nút **VI / EN**. Với người dùng mới, extension tự chọn tiếng Việt nếu trình duyệt đang dùng locale tiếng Việt; các locale khác sẽ mặc định dùng tiếng Anh để người dùng quốc tế thao tác dễ hơn.
 
 ### Ngôn ngữ nút Meet / Meet button language
 
